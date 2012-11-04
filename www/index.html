@@ -23,20 +23,22 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css" />
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+        <div id="map">
         </div>
-        <script type="text/javascript" src="cordova-2.2.0.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="leaflet/leaflet.js"></script>
         <script type="text/javascript">
-            app.initialize();
+            var map = L.map('map').setView([51.505, -0.09], 13);
+            L.tileLayer('http://{s}.kartat.kapsi.fi/peruskartta/{z}/{x}/{y}.jpg', {
+                        attribution: 'Map data &copy; Maanmittauslaitos. Used with permission.',
+                        maxZoom: 18,
+                        detectRetina: true,
+                        subdomains: ['tiles', 'tile2']
+                        }).addTo(map);
+            map.locate({setView: true, maxZoom: 16});
         </script>
     </body>
 </html>
